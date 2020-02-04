@@ -24,7 +24,7 @@ public class EmployeeValidator {
         return errors;
     }
 
-    // タイトルの必須入力チェック
+    // 社員番号の必須入力チェック
     private static String _validateCode(String code) {
         if(code == null || code.equals("")) {
             return "社員番号を入力してください。";
@@ -33,7 +33,7 @@ public class EmployeeValidator {
         return "";
     }
 
-    // メッセージの必須入力チェック
+    // 名前の必須入力チェック
     private static String _validateName(String name) {
         if(name == null || name.equals("")) {
             return "名前を入力してください。";
@@ -42,6 +42,7 @@ public class EmployeeValidator {
         return "";
     }
 
+    // パスワードの必須入力チェック
     private static String _validatePassword(String password) {
         if(password == null || password.equals("")) {
             return "パスワードを入力してください。";
