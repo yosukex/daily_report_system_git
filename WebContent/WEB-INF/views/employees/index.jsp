@@ -20,7 +20,16 @@
                         <tr class="row${status.count % 2}">
                             <td><c:out value="${employee.code}"></c:out></td>
                             <td><c:out value="${employee.name}"></c:out></td>
-                            <td><a href="${pageContext.request.contextPath}/show?id=${employee.id}">詳細を表示</a></td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${employee.delete_flag == 0}">
+                                        <a href="${pageContext.request.contextPath}/show?id=${employee.id}">詳細を表示</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        (削除済み)
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                         </tr>
                     </c:forEach>
                </tbody>

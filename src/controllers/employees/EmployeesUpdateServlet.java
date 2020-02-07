@@ -73,7 +73,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
             e.setAdmin_flag(Integer.parseInt(request.getParameter("admin_flag")));
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             e.setUpdated_at(currentTime);       // 更新日時のみ上書き
-            e.setDelete_flag(0);//
+            e.setDelete_flag(0);
 
             // バリデーションを実行してエラーがあったら編集画面のフォームに戻る
             List<String> errors = EmployeeValidator.validate(e, code_duplicate_check, password_check_flag);
