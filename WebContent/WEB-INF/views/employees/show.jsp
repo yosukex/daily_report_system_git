@@ -20,8 +20,8 @@
                             <th>権限</th>
                             <td>
                                 <c:choose>
-                                    <c:when test="${employee.admin_flag == 1}"><p>管理者</p></c:when>
-                                    <c:otherwise><p>一般</p></c:otherwise>
+                                    <c:when test="${employee.admin_flag == 1}">管理者</c:when>
+                                    <c:otherwise>一般</c:otherwise>
                                 </c:choose>
                             </td>
                         </tr>
