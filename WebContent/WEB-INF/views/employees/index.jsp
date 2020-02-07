@@ -9,23 +9,22 @@
             </div>
         </c:if>
         <h2>従業員　一覧</h2>
-            <table>
+            <table id="employee_list">
                 <tbody>
                     <tr>
                         <th>社員番号</th>
                         <th>氏名</th>
                         <th>操作</th>
                     </tr>
-                    <c:forEach var="employee" items="${employees}">
-                        <tr>
-                            <td><c:out value="${employees.code}"></c:out></td>
-                            <td><c:out value="${employees.name}"></c:out></td>
-                            <td><a href="${pageContext.request.contextPath}/show?id=${employees.id}">詳細を表示</a></td>
+                    <c:forEach var="employee" items="${employees}" varStatus="status">
+                        <tr class="row${status.count % 2}">
+                            <td><c:out value="${employee.code}"></c:out></td>
+                            <td><c:out value="${employee.name}"></c:out></td>
+                            <td><a href="${pageContext.request.contextPath}/show?id=${employee.id}">詳細を表示</a></td>
                         </tr>
                     </c:forEach>
                </tbody>
             </table>
-        </ul>
         <div id="pagination">
             <%--ページ数表記 --%>
             （全 ${employees_count} 件）<br />
@@ -40,5 +39,6 @@
                 </c:choose>
             </c:forEach>
         </div>
+        <p><a href="${pageContext.request.contextPath}/employees/new">新規従業員の登録</a></p>
     </c:param>
 </c:import>
