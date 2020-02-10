@@ -21,7 +21,7 @@
                 </th>
             </tr>
             <c:forEach var="report" items="${reports}" varStatus="status">
-                <tr>
+                <tr class="row${status.count % 2}">
                     <td>
                         <c:out value="${report.employee.name}"></c:out>
                     </td>
