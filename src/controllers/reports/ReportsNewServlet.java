@@ -1,6 +1,7 @@
 package controllers.reports;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,8 +34,11 @@ public class ReportsNewServlet extends HttpServlet {
         // CSRF対策
         request.setAttribute("_token", request.getSession().getId());
 
-        // おまじないとしてのインスタンスを生成
-        request.setAttribute("message", new Report());
+
+
+        Report r = new Report();//初期値に今日の日付
+        r.setReport_date(new Date(System.currentTimeMillis()));
+        request.setAttribute("report", r);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/new.jsp");
         rd.forward(request, response);

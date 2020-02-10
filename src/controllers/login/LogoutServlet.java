@@ -27,6 +27,7 @@ public class LogoutServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //セッションスコープから login_employee を除去することでログアウト
         request.getSession().removeAttribute("login_employee");
 
         request.getSession().setAttribute("flush", "ログアウトしました。");

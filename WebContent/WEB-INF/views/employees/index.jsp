@@ -16,9 +16,9 @@
                         <th>氏名</th>
                         <th>操作</th>
                     </tr>
-                    <c:forEach var="employee" items="${employees}" varStatus="status">
+                    <c:forEach var="employee" items="${employees}" varStatus="status"><%-- employees=サーブレットrequest.setAttribute--%>
                         <tr class="row${status.count % 2}">
-                            <td><c:out value="${employee.code}"></c:out></td>
+                            <td><c:out value="${employee.code}"></c:out></td><%-- value=forEach var=employee --%>
                             <td><c:out value="${employee.name}"></c:out></td>
                             <td>
                                 <c:choose>

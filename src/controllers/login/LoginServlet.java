@@ -35,8 +35,10 @@ public class LoginServlet extends HttpServlet {
      */
     // ログイン画面を表示
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("_token", request.getSession().getId());
+        request.setAttribute("_token", request.getSession().getId());// CSRF対策
         request.setAttribute("hasError", false);
+        // フラッシュメッセージがセッションスコープにセットされていたら
+        // リクエストスコープに保存する（セッションスコープからは削除）
         if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
@@ -65,14 +67,14 @@ public class LoginServlet extends HttpServlet {
             String password = EncryptUtil.getPasswordEncrypt(
                     plain_pass,
                     (String)this.getServletContext().getAttribute("salt")
-                    );
+                    );//ソルト文字列を連結した文字列に暗号化
 
             // 社員番号とパスワードが正しいかチェックする
             try {
                 e = em.createNamedQuery("checkLoginCodeAndPassword", Employee.class)
                       .setParameter("code", code)
                       .setParameter("pass", password)
-                      .getSingleResult();
+                      .getSingleResult();//Employee.java
             } catch(NoResultException ex) {}
 
             em.close();
@@ -82,7 +84,7 @@ public class LoginServlet extends HttpServlet {
             }
         }
 
-        if(!check_result) {
+        if(!check_result) { //check_result = false
             // 認証できなかったらログイン画面に戻る
             request.setAttribute("_token", request.getSession().getId());
             request.setAttribute("hasError", true);
@@ -92,7 +94,7 @@ public class LoginServlet extends HttpServlet {
             rd.forward(request, response);
         } else {
             // 認証できたらログイン状態にしてトップページへリダイレクト
-            request.getSession().setAttribute("login_employee", e);
+            request.getSession().setAttribute("login_employee", e);//セッションスコープに情報を格納=ログイン状態
 
             request.getSession().setAttribute("flush", "ログインしました。");
             response.sendRedirect(request.getContextPath() + "/");
