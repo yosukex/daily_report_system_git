@@ -49,7 +49,7 @@
                     </tr>
                 </table>
                 <c:if test="${report.employee.id==sessionScope.login_employee.id}">
-                    <p><a href="${pageContext.request.contextPath}/reports/edit?id=${employee.id}">この日報を編集する</a></p>
+                    <p><a href="${pageContext.request.contextPath}/reports/edit?id=${report.id}">この日報を編集する</a></p>
                 </c:if>
                 <p><a href="${pageContext.request.contextPath}/reports/index">一覧に戻る</a></p>
             </c:when>
