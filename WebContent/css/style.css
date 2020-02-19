@@ -22,7 +22,9 @@ h1 {
     display: inline;
 }
 
-
+pre {
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}
 h2 {
     font-size: 36px;
     margin-bottom: 15px;

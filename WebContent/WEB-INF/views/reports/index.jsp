@@ -32,7 +32,7 @@
                         <c:out value="${report.title}"></c:out>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/show?id=${report.id}">詳細を見る</a>
+                        <a href="${pageContext.request.contextPath}/reports/show?id=${report.id}">詳細を見る</a>
                     </td>
                 </tr>
             </c:forEach>
