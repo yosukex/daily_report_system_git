@@ -24,6 +24,14 @@ import javax.persistence.Table;
             name = "getReportsCount",
             query = "SELECT COUNT(r) FROM Report AS r"
             ),
+    @NamedQuery(
+            name = "getMyAllReports",
+            query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMyReportsCount",
+            query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee"
+            )
 })
 @Entity
 public class Report {
@@ -34,7 +42,7 @@ public class Report {
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;
+    private Employee employee;//ログインしている従業員の情報をemployeeプロパティに格納
 
     @Column(name = "report_date", nullable = false)
     private Date report_date;

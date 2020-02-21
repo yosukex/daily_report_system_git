@@ -40,12 +40,14 @@ public class ReportsIndexServlet extends HttpServlet {
         int page = 1;
         try {
             page = Integer.parseInt(request.getParameter("page"));//intに変換
-        } catch(NumberFormatException e) {}
+        } catch(NumberFormatException e) {
+
+        }
 
         // 最大件数と開始位置を指定してメッセージを取得
         List<Report> reports = em.createNamedQuery("getAllReports", Report.class)
-                                   .setFirstResult(15 * (page - 1))
-                                   .setMaxResults(15)
+                                   .setFirstResult(15 * (page - 1))//何件目からデータを取得するか
+                                   .setMaxResults(15)//データの最大取得件数
                                    .getResultList();//問い合わせ結果を取得
 
         // 全件数を取得
